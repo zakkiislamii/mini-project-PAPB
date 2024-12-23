@@ -40,7 +40,7 @@ fun GreetingScreen(onStart: () -> Unit) {
             Text(
                 text = "Solusi buat kamu yang lupa kemana-mana",
                 style = MaterialTheme.typography.h6,
-                fontSize = 18.sp
+                fontSize = 16.sp
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(

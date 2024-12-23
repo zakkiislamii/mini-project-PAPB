@@ -2,8 +2,13 @@ package com.example.travelupa.components.wisata
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
@@ -92,14 +97,19 @@ fun RekomendasiTempatScreen(
                         }
                         .padding(16.dp)
                 )
+
             }
-        }
+        },
+        modifier = Modifier.windowInsetsPadding(
+            WindowInsets.safeDrawing.only(
+                WindowInsetsSides.Top
+            )
+        )
     )
     {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    modifier = Modifier.padding(vertical = 30.dp),
                     title = {
                         Text(
                             "Rekomendasi Tempat Wisata",
@@ -111,12 +121,18 @@ fun RekomendasiTempatScreen(
                         IconButton(onClick = {
                             coroutineScope.launch { drawerState.open() }
                         }) {
-                            androidx.compose.material3.Icon(
+                            Icon(
                                 Icons.Filled.Menu,
-                                contentDescription = "Menu"
+                                contentDescription = "Menu",
+                                tint = Color.White
                             )
                         }
-                    }
+                    },
+                    modifier = Modifier.windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(
+                            WindowInsetsSides.Top
+                        )
+                    )
                 )
             },
             floatingActionButton = {
