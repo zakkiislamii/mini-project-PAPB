@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
-fun UploadImageToFirestore(
+fun uploadImageToFirestore(
     firestore: FirebaseFirestore,
     context: Context,
     imageUri: Uri,

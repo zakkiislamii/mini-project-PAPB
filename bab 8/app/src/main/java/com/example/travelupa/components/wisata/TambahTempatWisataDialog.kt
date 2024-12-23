@@ -97,7 +97,7 @@ fun TambahTempatWisataDialog(
                     if (nama.isNotBlank() && deskripsi.isNotBlank() && gambarUri != null) {
                         isUploading = true
                         val tempatWisata = TempatWisata(nama, deskripsi)
-                        UploadImageToFirestore(
+                        uploadImageToFirestore(
                             firestore = firestore,
                             context = context,
                             imageUri = gambarUri!!,
