@@ -26,6 +26,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -133,7 +134,7 @@ fun TempatItemEditable(
                         offset = DpOffset(x = (-8).dp, y = 0.dp)
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Delete") },
+                            text = { Text("Delete", color = Color.Black) },
                             onClick = {
                                 expanded = false
                                 scope.launch(Dispatchers.IO) {
@@ -143,23 +144,22 @@ fun TempatItemEditable(
                                                 localPath = tempat.gambarUriString ?: ""
                                             )
                                         )
-                                        tempat.firestoreId?.let { id ->
-                                            withContext(Dispatchers.Main) {
-                                                firestore.collection("tempat_wisata")
-                                                    .document(id)
-                                                    .delete()
-                                                    .addOnSuccessListener {
-                                                        onDelete()
-                                                    }
-                                                    .addOnFailureListener { e ->
-                                                        Log.w(
-                                                            "TempatItemEditable",
-                                                            "Error deleting document",
-                                                            e
-                                                        )
-                                                    }
-                                            }
+                                        withContext(Dispatchers.Main) {
+                                            firestore.collection("tempat_wisata")
+                                                .document(tempat.nama)
+                                                .delete()
+                                                .addOnSuccessListener {
+                                                    onDelete()
+                                                }
+                                                .addOnFailureListener { e ->
+                                                    Log.w(
+                                                        "TempatItemEditable",
+                                                        "Error deleting document",
+                                                        e
+                                                    )
+                                                }
                                         }
+
                                     } catch (e: Exception) {
                                         Log.e("TempatItemEditable", "Error deleting data", e)
                                     }

@@ -30,7 +30,8 @@ fun uploadImageToFirestore(
         imageDao.insert(ImageEntity(localPath = localPath))
         val updateTempatWisata = tempatWisata.copy(gambarUriString = localPath)
         firestore.collection("tempat_wisata")
-            .add(updateTempatWisata)
+            .document(tempatWisata.nama)
+            .set(updateTempatWisata)
             .addOnSuccessListener {
                 onSuccess(updateTempatWisata)
             }
